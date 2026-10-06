@@ -6,7 +6,7 @@
 
 PPL Connect grew from a practical internal need into a multi-layer application spanning employee lifecycle workflows, documents, requests, internal communication, training, administration, identity, security, testing, and production deployment.
 
-I worked across the product end to end: understanding the business problem, deciding how the workflow should behave, modeling the data, building the application, integrating Microsoft services, testing the system, deploying it, and fixing the problems that only show up when a real system meets real users.
+I worked across the product end to end: understanding the business problem, deciding how the workflow should behave, modeling the data, building the application, integrating Microsoft services, testing the system, deploying it, and fixing the problems that appear when an application is used in practice.
 
 This repository is a **sanitized technical case study**. The production source remains private because it contains internal operational data and configuration. No employee data, client data, credentials, production identifiers, or proprietary documents are included here.
 
@@ -16,10 +16,10 @@ This repository is a **sanitized technical case study**. The production source r
 | --- | --- |
 | **Problem** | Internal employee and operational workflows were spread across separate processes, tools, documents, and manual handoffs. |
 | **What I built** | A secure internal platform that brings employee lifecycle, document, request, communication, learning, and administrative workflows into one application. |
-| **My role** | I worked from problem definition through architecture, implementation, testing, deployment, production hardening, and continued iteration. |
+| **My role** | I drove the work from problem definition through architecture, implementation, testing, deployment, production hardening, and continued iteration. |
 | **Application stack** | TypeScript, Node.js, Azure Functions, PostgreSQL, Microsoft Entra ID, Microsoft Graph, SharePoint, GitHub Actions, Vitest. |
-| **Development approach** | I used AI-assisted development where it helped me move faster, but I remained responsible for architecture, integration, validation, security decisions, testing, and production behavior. |
-| **Production source** | Private. This public repository contains only sanitized architecture, documentation, and representative examples. |
+| **Development approach** | I used AI-assisted development where it helped me move faster, while remaining responsible for architecture, integration, validation, security decisions, testing, and production behavior. |
+| **Production source** | Private. This public repository contains only sanitized architecture, documentation, screenshots, and representative examples. |
 
 ## Why I built it
 
@@ -52,6 +52,57 @@ I worked across the platform end to end, including:
 
 The part I value most is not any one technology or feature. It is the ability to take an ambiguous problem, learn what I need, design a workable system, connect the pieces, test the assumptions, and keep going until the application works in practice.
 
+## Product walkthrough
+
+The screenshots below are sanitized for public use. Names are synthetic and sensitive values or internal identifiers have been removed where needed.
+
+### Home workspace
+
+![PPL Connect home workspace](assets/screenshots/01-home.jpg)
+
+The home screen acts as a practical starting point for employees, bringing together tasks, quick actions, internal guidance, and commonly used workflows.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<strong>New Hire Admin</strong><br><br>
+<img src="assets/screenshots/02-new-hire-admin.jpg" alt="PPL Connect new hire administration"><br><br>
+A persisted administrative workflow for profile state, onboarding tasks, document status, Day-30 follow-up, and audit-oriented lifecycle management.
+</td>
+<td width="50%" valign="top">
+<strong>New Employee Journey</strong><br><br>
+<img src="assets/screenshots/03-new-employee.jpg" alt="PPL Connect new employee journey"><br><br>
+The employee-facing side of the same lifecycle, guiding people through Day-1 documents, systems and access, learning, and follow-up.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<strong>Document Workspace</strong><br><br>
+<img src="assets/screenshots/04-documents.jpg" alt="PPL Connect document workspace"><br><br>
+A controlled document experience backed by Microsoft Graph and SharePoint, with application permissions and workflow state kept in the backend.
+</td>
+<td width="50%" valign="top">
+<strong>Request Center</strong><br><br>
+<img src="assets/screenshots/05-request-center.jpg" alt="PPL Connect request center"><br><br>
+A single front door for common operational requests such as system access, IT issues, HR or office needs, and content corrections.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<strong>Training and How-To</strong><br><br>
+<img src="assets/screenshots/06-training-how-to.jpg" alt="PPL Connect training and how-to"><br><br>
+Assigned learning, practical instructions, and role-connected resources inside the same workplace application.
+</td>
+<td width="50%" valign="top">
+<strong>Process Library</strong><br><br>
+<img src="assets/screenshots/10-processes-how-to.jpg" alt="PPL Connect process library"><br><br>
+Operational workflows rendered as navigable visual guidance so process knowledge lives inside the product rather than in disconnected files.
+</td>
+</tr>
+</table>
+
+[See the full 10-screen product walkthrough](docs/product-walkthrough.md)
+
 ## Architecture
 
 ```mermaid
@@ -80,6 +131,24 @@ flowchart LR
 The browser handles the user experience, but privileged decisions do not rely on the browser. Authentication is established through Microsoft identity, application authorization is enforced server-side, PostgreSQL stores workflow and application state, and document operations are mediated through backend-controlled Microsoft Graph and SharePoint integrations.
 
 [Read the architecture deep dive](docs/architecture.md)
+
+## How the system evolved
+
+The final architecture was not the starting point. PPL Connect moved through several stages as the product became more useful and the operational consequences became more serious:
+
+1. browser prototype to prove the internal portal concept
+2. TypeScript API and PostgreSQL persistence
+3. stateful onboarding, Day-30, and offboarding workflows
+4. Microsoft Graph and SharePoint document management
+5. Microsoft Entra identity and stronger server-side authorization
+6. separate Development and Production release controls
+7. employee experience, internal requests, training, and richer workflows
+8. more structured document completion and review
+9. restricted business administration and continued production hardening
+
+I added complexity when the application earned the need for it rather than trying to design every production concern on day one.
+
+[Read the project evolution](docs/project-evolution.md)
 
 ## Platform capabilities
 
