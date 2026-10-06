@@ -73,21 +73,21 @@ That approach makes releases slightly less automatic, but it reduces the risk of
 A workflow-oriented model can look conceptually like this:
 
 ```text
-employees
-  └── employee_portal_access
-        └── app_users
+employee_records
+  └── portal_access
+        └── application_users
 
-onboarding_cases
-  ├── onboarding_tasks
+onboarding_workflows
+  ├── workflow_tasks
   └── document_workflows
         └── document_revisions
 
-messages / requests / announcements
+communications / requests / announcements
 
 audit_events
 ```
 
-This is intentionally simplified and does not reproduce the production schema.
+These are intentionally generic labels and do not reproduce production table names or the production schema.
 
 ## What I learned
 
